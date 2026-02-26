@@ -47,6 +47,12 @@ desktop.ini
 *.sqlite3
 *.db
 
+# Build artifacts
+*.exe
+*.spec
+desktop-app/out/
+desktop-app/dist/
+
 # Logs & Coverage
 *.log
 .coverage
