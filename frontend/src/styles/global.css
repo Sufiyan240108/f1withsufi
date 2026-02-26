@@ -1,0 +1,749 @@
+/* ============================================================
+   OpenF1 Analytics 2026 — Global Design System
+   Bloomberg Terminal aesthetic · Dark-first · Minimal
+   ============================================================ */
+
+/* ── Color Tokens ── */
+:root {
+  --bg: #0E1116;
+  --panel: #141922;
+  --panel-hover: #1a2130;
+  --border: rgba(255, 255, 255, 0.06);
+  --border-subtle: rgba(255, 255, 255, 0.04);
+  --text-primary: #E6E9EF;
+  --text-secondary: #9AA4B2;
+  --text-muted: #5A6478;
+  --accent: #E10600;
+  --accent-dim: rgba(225, 6, 0, 0.15);
+  --green: #00C853;
+  --green-dim: rgba(0, 200, 83, 0.12);
+  --red: #F44336;
+  --red-dim: rgba(244, 67, 54, 0.12);
+  --yellow: #FFB300;
+  --soft-tire: #E53935;
+  /* Soft */
+  --medium-tire: #FFB300;
+  /* Medium */
+  --hard-tire: #ECEFF1;
+  /* Hard */
+  --inter-tire: #43A047;
+  /* Inter */
+  --wet-tire: #1E88E5;
+  /* Wet */
+
+  /* Typography scale */
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --text-h1: 32px;
+  --text-h2: 24px;
+  --text-h3: 18px;
+  --text-h4: 15px;
+  --text-body: 14px;
+  --text-caption: 12px;
+
+  /* Spacing (8px grid) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* Radii */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+
+  /* Transitions */
+  --transition-micro: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-panel: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-graph: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Navbar height */
+  --navbar-h: 56px;
+}
+
+/* ── Reset ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font);
+  font-size: var(--text-body);
+  color: var(--text-primary);
+  background-color: var(--bg);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* ── Typography ── */
+h1 {
+  font-size: var(--text-h1);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: var(--text-h2);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
+}
+
+h3 {
+  font-size: var(--text-h3);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+}
+
+h4 {
+  font-size: var(--text-h4);
+  font-weight: 500;
+}
+
+p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ── Layout ── */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--space-5);
+}
+
+.page {
+  padding-top: calc(var(--navbar-h) + var(--space-7));
+  padding-bottom: var(--space-8);
+  min-height: 100vh;
+}
+
+.section {
+  margin-bottom: var(--space-7);
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+}
+
+@media (max-width: 1024px) {
+
+  .grid-2,
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Cards ── */
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  transition: border-color var(--transition-micro);
+}
+
+.card:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border);
+}
+
+.card-title {
+  font-size: var(--text-h4);
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+/* ── Stat Card ── */
+.stat-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-5);
+}
+
+.stat-label {
+  font-size: var(--text-caption);
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-1);
+}
+
+.stat-value {
+  font-size: var(--text-h2);
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+/* ── Data Tables ── */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-body);
+}
+
+.data-table thead th {
+  padding: var(--space-2) var(--space-3);
+  text-align: left;
+  font-size: var(--text-caption);
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: var(--panel);
+  z-index: 1;
+}
+
+.data-table thead th:last-child {
+  text-align: right;
+}
+
+.data-table tbody tr {
+  border-bottom: 1px solid var(--border-subtle);
+  transition: background var(--transition-micro);
+}
+
+.data-table tbody tr:hover {
+  background: var(--panel-hover);
+}
+
+.data-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.data-table td {
+  padding: var(--space-2) var(--space-3);
+  color: var(--text-secondary);
+  vertical-align: middle;
+}
+
+.data-table td.pos {
+  font-weight: 700;
+  color: var(--text-primary);
+  width: 40px;
+}
+
+.data-table td.name {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.data-table td.points {
+  text-align: right;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.data-table .delta-up {
+  color: var(--green);
+  font-size: 11px;
+}
+
+.data-table .delta-down {
+  color: var(--red);
+  font-size: 11px;
+}
+
+.data-table .delta-same {
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+/* Top 3 position bar */
+.pos-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.pos-marker-1 {
+  width: 3px;
+  height: 16px;
+  background: var(--yellow);
+  border-radius: 2px;
+}
+
+.pos-marker-2 {
+  width: 3px;
+  height: 16px;
+  background: var(--text-secondary);
+  border-radius: 2px;
+}
+
+.pos-marker-3 {
+  width: 3px;
+  height: 16px;
+  background: var(--yellow);
+  opacity: 0.5;
+  border-radius: 2px;
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: var(--font);
+  font-size: var(--text-body);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--transition-micro), color var(--transition-micro), border-color var(--transition-micro);
+}
+
+.btn:hover {
+  background: var(--panel-hover);
+  color: var(--text-primary);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.btn-accent {
+  background: var(--accent-dim);
+  border-color: rgba(225, 6, 0, 0.3);
+  color: var(--accent);
+}
+
+.btn-accent:hover {
+  background: rgba(225, 6, 0, 0.25);
+}
+
+/* ── Badges ── */
+.badge {
+  display: inline-block;
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-sm);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.badge-sprint {
+  background: var(--accent-dim);
+  color: var(--accent);
+  border: 1px solid rgba(225, 6, 0, 0.3);
+}
+
+.badge-next {
+  background: var(--green-dim);
+  color: var(--green);
+  border: 1px solid rgba(0, 200, 83, 0.3);
+}
+
+.badge-past {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+/* ── Tabs ── */
+.tab-bar {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: var(--space-6);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tab-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.tab-btn {
+  position: relative;
+  padding: var(--space-3) var(--space-5);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: var(--text-body);
+  font-weight: 500;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  transition: color var(--transition-micro);
+}
+
+.tab-btn:hover {
+  color: var(--text-primary);
+}
+
+.tab-btn.active {
+  color: var(--text-primary);
+}
+
+.tab-underline {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 1px 1px 0 0;
+}
+
+/* ── Select / Dropdown ── */
+.select {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-3);
+  color: var(--text-primary);
+  font-family: var(--font);
+  font-size: var(--text-body);
+  cursor: pointer;
+  outline: none;
+  transition: border-color var(--transition-micro);
+}
+
+.select:hover,
+.select:focus {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ── Skeleton ── */
+@keyframes shimmer {
+  0% {
+    background-position: -500px 0;
+  }
+
+  100% {
+    background-position: 500px 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--panel) 25%, var(--panel-hover) 50%, var(--panel) 75%);
+  background-size: 1000px 100%;
+  animation: shimmer 1.6s infinite;
+  border-radius: var(--radius-sm);
+}
+
+.skeleton-text {
+  height: 14px;
+  margin-bottom: 8px;
+}
+
+.skeleton-row {
+  height: 36px;
+  margin-bottom: 4px;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Divider ── */
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: var(--space-5) 0;
+}
+
+/* ── Page header ── */
+.page-header {
+  margin-bottom: var(--space-7);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid var(--border);
+}
+
+.page-subtitle {
+  font-size: var(--text-body);
+  color: var(--text-muted);
+  margin-top: var(--space-2);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: var(--text-caption);
+}
+
+/* ── Empty state ── */
+.empty-state {
+  text-align: center;
+  padding: var(--space-8) var(--space-5);
+  color: var(--text-muted);
+}
+
+.empty-state-icon {
+  font-size: 32px;
+  margin-bottom: var(--space-3);
+  opacity: 0.4;
+}
+
+.empty-state p {
+  font-size: var(--text-body);
+}
+
+/* ── Compound pills ── */
+.compound {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.compound-SOFT {
+  background: rgba(229, 57, 53, 0.15);
+  color: #EF5350;
+}
+
+.compound-MEDIUM {
+  background: rgba(255, 179, 0, 0.15);
+  color: #FFB300;
+}
+
+.compound-HARD {
+  background: rgba(236, 239, 241, 0.1);
+  color: #ECEFF1;
+}
+
+.compound-INTER {
+  background: rgba(67, 160, 71, 0.15);
+  color: #66BB6A;
+}
+
+.compound-WET {
+  background: rgba(30, 136, 229, 0.15);
+  color: #42A5F5;
+}
+
+/* ─────────────────────────────────────────────────────────
+   THEMES — applied via data-theme on <html>
+   ───────────────────────────────────────────────────────── */
+
+[data-theme="light"] {
+  --bg: #F2F4F7;
+  --panel: #FFFFFF;
+  --panel-hover: #EEF0F5;
+  --border: rgba(0, 0, 0, 0.08);
+  --border-subtle: rgba(0, 0, 0, 0.04);
+  --text-primary: #0D0F14;
+  --text-secondary: #3D4454;
+  --text-muted: #7A8299;
+  --accent: #E10600;
+  --accent-dim: rgba(225, 6, 0, 0.1);
+  --green: #00A846;
+  --green-dim: rgba(0, 168, 70, 0.1);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="ferrari"] {
+  --bg: #0C0000;
+  --panel: #160606;
+  --panel-hover: #1F0A0A;
+  --border: rgba(220, 0, 0, 0.18);
+  --border-subtle: rgba(220, 0, 0, 0.08);
+  --text-primary: #F5ECEC;
+  --text-secondary: #B07070;
+  --text-muted: #6A3535;
+  --accent: #DC0000;
+  --accent-dim: rgba(220, 0, 0, 0.16);
+  --green: #FFD700;
+  --green-dim: rgba(255, 215, 0, 0.12);
+}
+
+[data-theme="redbull"] {
+  --bg: #060912;
+  --panel: #0B1020;
+  --panel-hover: #12182F;
+  --border: rgba(54, 113, 198, 0.22);
+  --border-subtle: rgba(54, 113, 198, 0.09);
+  --text-primary: #E2EAF8;
+  --text-secondary: #7A99CC;
+  --text-muted: #3F5A88;
+  --accent: #3671C6;
+  --accent-dim: rgba(54, 113, 198, 0.16);
+  --green: #CC0000;
+  --green-dim: rgba(204, 0, 0, 0.14);
+}
+
+[data-theme="mercedes"] {
+  --bg: #050E0D;
+  --panel: #091A18;
+  --panel-hover: #0E2422;
+  --border: rgba(39, 244, 210, 0.16);
+  --border-subtle: rgba(39, 244, 210, 0.07);
+  --text-primary: #D8F5F2;
+  --text-secondary: #6FB8B0;
+  --text-muted: #33706A;
+  --accent: #27F4D2;
+  --accent-dim: rgba(39, 244, 210, 0.13);
+  --green: #00C853;
+  --green-dim: rgba(0, 200, 83, 0.1);
+}
+
+[data-theme="mclaren"] {
+  --bg: #0E0600;
+  --panel: #1C0E00;
+  --panel-hover: #271500;
+  --border: rgba(255, 128, 0, 0.2);
+  --border-subtle: rgba(255, 128, 0, 0.08);
+  --text-primary: #FFF3E0;
+  --text-secondary: #CC8030;
+  --text-muted: #7A4C10;
+  --accent: #FF8000;
+  --accent-dim: rgba(255, 128, 0, 0.15);
+  --green: #00E676;
+  --green-dim: rgba(0, 230, 118, 0.1);
+}
+
+[data-theme="astonmartin"] {
+  --bg: #040C07;
+  --panel: #08150D;
+  --panel-hover: #0D1F14;
+  --border: rgba(34, 153, 113, 0.2);
+  --border-subtle: rgba(34, 153, 113, 0.08);
+  --text-primary: #D8F2E8;
+  --text-secondary: #5F9E7E;
+  --text-muted: #2F5C46;
+  --accent: #229971;
+  --accent-dim: rgba(34, 153, 113, 0.15);
+  --green: #CEDC00;
+  --green-dim: rgba(206, 220, 0, 0.12);
+}
+
+[data-theme="williams"] {
+  --bg: #06090F;
+  --panel: #0B1020;
+  --panel-hover: #111929;
+  --border: rgba(100, 196, 255, 0.17);
+  --border-subtle: rgba(100, 196, 255, 0.07);
+  --text-primary: #D8EEFF;
+  --text-secondary: #6A9EC8;
+  --text-muted: #345C80;
+  --accent: #64C4FF;
+  --accent-dim: rgba(100, 196, 255, 0.13);
+  --green: #00E676;
+  --green-dim: rgba(0, 230, 118, 0.1);
+}
+
+[data-theme="alpine"] {
+  --bg: #0D050C;
+  --panel: #180A16;
+  --panel-hover: #21101F;
+  --border: rgba(255, 135, 188, 0.18);
+  --border-subtle: rgba(255, 135, 188, 0.07);
+  --text-primary: #FAE8F5;
+  --text-secondary: #B0609A;
+  --text-muted: #68305C;
+  --accent: #FF87BC;
+  --accent-dim: rgba(255, 135, 188, 0.14);
+  --green: #00BCD4;
+  --green-dim: rgba(0, 188, 212, 0.1);
+}
+
+[data-theme="sauber"] {
+  --bg: #050D04;
+  --panel: #0A1809;
+  --panel-hover: #10220F;
+  --border: rgba(82, 226, 82, 0.17);
+  --border-subtle: rgba(82, 226, 82, 0.07);
+  --text-primary: #E2FAE2;
+  --text-secondary: #5EAA5E;
+  --text-muted: #2F612F;
+  --accent: #52E252;
+  --accent-dim: rgba(82, 226, 82, 0.13);
+  --green: #FFD600;
+  --green-dim: rgba(255, 214, 0, 0.12);
+}
+
+/* ── 2026 New Teams ── */
+
+/* Cadillac F1 */
+[data-theme="cadillac"] {
+  --bg: #080808;
+  --panel: #121212;
+  --panel-hover: #1C1C1C;
+  --border: rgba(200, 200, 200, 0.14);
+  --border-subtle: rgba(200, 200, 200, 0.06);
+  --text-primary: #F0F0F0;
+  --text-secondary: #909090;
+  --text-muted: #555555;
+  --accent: #C0C0C0;
+  --accent-dim: rgba(192, 192, 192, 0.12);
+  --green: #3671C6;
+  --green-dim: rgba(54, 113, 198, 0.12);
+}
+
+/* Audi F1 */
+[data-theme="audi"] {
+  --bg: #0A0000;
+  --panel: #140505;
+  --panel-hover: #1E0A0A;
+  --border: rgba(187, 10, 33, 0.22);
+  --border-subtle: rgba(187, 10, 33, 0.08);
+  --text-primary: #F5ECEC;
+  --text-secondary: #B07070;
+  --text-muted: #6A3535;
+  --accent: #BB0A21;
+  --accent-dim: rgba(187, 10, 33, 0.16);
+  --green: #C0C0C0;
+  --green-dim: rgba(192, 192, 192, 0.12);
+}
